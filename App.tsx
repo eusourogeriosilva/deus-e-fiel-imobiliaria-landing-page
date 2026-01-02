@@ -3,6 +3,7 @@ import React, { useState, useRef } from 'react';
 import { PhoneIcon, CheckIcon, UsersIcon, LightBulbIcon, TargetIcon } from './components/Icons';
 import AtendimentoImg from './assets/atendimento.png';
 import ClienteAnaImg from './assets/cliente-ana.png';
+import ClienteRicardoImg from './assets/cliente-ricardo.png';
 import { WHATSAPP_NUMBER, WHATSAPP_LINK, INSTAGRAM_HANDLE, FAQ_DATA } from './constants';
 
 const App: React.FC = () => {
@@ -283,7 +284,7 @@ const App: React.FC = () => {
                   “Consegui investir com confiança e transparência, do jeito que eu sempre quis. Clareza total em todo o processo.”
                 </p>
                 <div className="flex items-center gap-4">
-                  <img src="https://i.pravatar.cc/100?u=ricardo" alt="Investidor" className="w-12 h-12 rounded-full" />
+                  <img src={ClienteRicardoImg} alt="Investidor" className="w-12 h-12 rounded-full object-cover" />
                   <div>
                     <p className="font-bold">Ricardo Oliveira</p>
                     <p className="text-sm text-slate-500">Investidor Feliz</p>
@@ -333,7 +334,7 @@ const App: React.FC = () => {
                 Pronto para encontrar o imóvel perfeito com transparência?
               </h2>
               <p className="text-xl text-amber-50 mb-10">
-                👉 Fale com a gente agora! Estamos prontos para te ouvir.
+                Fale com a gente agora! Estamos prontos para te ouvir.
               </p>
               <button
                 onClick={scrollToForm}
