@@ -2,6 +2,7 @@
 import React, { useState, useRef } from 'react';
 import { PhoneIcon, CheckIcon, UsersIcon, LightBulbIcon, TargetIcon } from './components/Icons';
 import AtendimentoImg from './assets/atendimento.png';
+import ClienteAnaImg from './assets/cliente-ana.png';
 import { WHATSAPP_NUMBER, WHATSAPP_LINK, INSTAGRAM_HANDLE, FAQ_DATA } from './constants';
 
 const App: React.FC = () => {
@@ -270,7 +271,7 @@ const App: React.FC = () => {
                   “Me senti muito respeitada, eles realmente ouviram o que eu precisava! Encontrei o apartamento perfeito em Barueri.”
                 </p>
                 <div className="flex items-center gap-4">
-                  <img src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?q=80&w=200&auto=format&fit=crop" alt="Cliente" className="w-12 h-12 rounded-full object-cover" />
+                  <img src={ClienteAnaImg} alt="Cliente" className="w-12 h-12 rounded-full object-cover" />
                   <div>
                     <p className="font-bold">Ana Maria Silva</p>
                     <p className="text-sm text-slate-500">Cliente Satisfeita</p>
