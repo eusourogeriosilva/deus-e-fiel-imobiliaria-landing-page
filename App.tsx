@@ -1,6 +1,7 @@
 
 import React, { useState, useRef } from 'react';
 import { PhoneIcon, CheckIcon, UsersIcon, LightBulbIcon, TargetIcon } from './components/Icons';
+import AtendimentoImg from './assets/atendimento.png';
 import { WHATSAPP_NUMBER, WHATSAPP_LINK, INSTAGRAM_HANDLE, FAQ_DATA } from './constants';
 
 const App: React.FC = () => {
@@ -39,11 +40,11 @@ const App: React.FC = () => {
             <div className="w-10 h-10 bg-amber-500 rounded-lg flex items-center justify-center text-white font-bold text-xl">DF</div>
             <span className="font-bold text-lg tracking-tight uppercase">Deus é Fiel <span className="text-amber-500">Imobiliária</span></span>
           </div>
-          <button 
+          <button
             onClick={scrollToForm}
             className="hidden md:flex items-center gap-2 bg-amber-500 hover:bg-amber-600 transition-colors text-white px-5 py-2 rounded-full font-semibold text-sm shadow-sm"
           >
-            Tenho interesse!
+            Dê o primeiro passo -&gt;
           </button>
         </div>
       </header>
@@ -56,27 +57,27 @@ const App: React.FC = () => {
               Encontre seu lar com quem <span className="text-amber-500">entende você</span> de verdade
             </h1>
             <p className="text-lg md:text-xl text-slate-600 mb-8 max-w-lg leading-relaxed">
-              Você merece mais do que uma venda, você merece atenção, verdade e o melhor imóvel pra você. 
+              Você merece mais do que uma venda, você merece atenção, verdade e o melhor imóvel pra você.
               Nós cuidamos do seu sonho como se fosse nosso.
             </p>
             <div className="flex flex-col sm:flex-row gap-4">
-              <button 
+              <button
                 onClick={scrollToForm}
                 className="flex items-center justify-center gap-3 bg-amber-500 hover:bg-amber-600 text-white px-8 py-4 rounded-xl font-bold text-lg shadow-xl shadow-amber-500/20 transition-all hover:scale-[1.02]"
               >
-                Tenho interesse!
+                Dê o primeiro passo -&gt;
               </button>
             </div>
           </div>
           <div className="relative flex flex-col">
             {/* Decorative element background */}
             <div className="absolute -top-10 -right-10 w-64 h-64 bg-amber-100 rounded-full blur-3xl opacity-30"></div>
-            
+
             {/* Lead Capture Form */}
             <div ref={formRef} className="relative z-10 bg-white p-8 md:p-10 rounded-3xl border border-slate-100 shadow-2xl scroll-mt-32">
               <h3 className="text-2xl font-bold mb-2">Dê o primeiro passo</h3>
               <p className="text-slate-500 mb-6">Preencha os dados e um consultor entrará em contato.</p>
-              
+
               <form onSubmit={handleSubmit} className="space-y-4">
                 <div>
                   <label htmlFor="name" className="block text-sm font-semibold text-slate-700 mb-1">Nome Completo</label>
@@ -176,16 +177,16 @@ const App: React.FC = () => {
         <div className="container mx-auto px-6">
           <div className="grid lg:grid-cols-2 gap-16 items-center">
             <div>
-              <img 
-                src="https://images.unsplash.com/photo-1556740758-90de374c12ad?q=80&w=1170&auto=format&fit=crop" 
-                alt="Atendimento humanizado" 
+              <img
+                src={AtendimentoImg}
+                alt="Atendimento humanizado"
                 className="rounded-3xl shadow-xl"
               />
             </div>
             <div>
               <h2 className="text-3xl md:text-4xl font-bold mb-6">Nós somos a Deus é Fiel Imobiliária</h2>
               <p className="text-lg text-slate-600 mb-8">
-                Atuamos em Osasco e Barueri com um único propósito: transformar a busca pelo imóvel em uma jornada de fé e sucesso. 
+                Atuamos em Osasco e Barueri com um único propósito: transformar a busca pelo imóvel em uma jornada de fé e sucesso.
                 Aqui, você não é mais um número, você é parte de um sonho que vamos construir juntos.
               </p>
               <ul className="space-y-4 mb-8">
@@ -215,17 +216,17 @@ const App: React.FC = () => {
             <p className="text-slate-500 max-w-xl mx-auto">Colocamos seus objetivos no centro de tudo o que fazemos.</p>
           </div>
           <div className="grid md:grid-cols-3 gap-8">
-            <BenefitCard 
+            <BenefitCard
               icon={<UsersIcon className="w-8 h-8" />}
               title="Atendimento que escuta você"
               description="Não empurramos soluções, entendemos sua necessidade real e seu sonho de vida primeiro."
             />
-            <BenefitCard 
+            <BenefitCard
               icon={<LightBulbIcon className="w-8 h-8" />}
               title="Clareza do início ao fim"
               description="Explicamos cada etapa com total transparência. Sem surpresas negativas ou termos técnicos difíceis."
             />
-            <BenefitCard 
+            <BenefitCard
               icon={<TargetIcon className="w-8 h-8" />}
               title="Foco no seu objetivo"
               description="Seja para morar ou investir, nossa busca é focada no que é certo para você, não para o vendedor."
@@ -248,11 +249,11 @@ const App: React.FC = () => {
             <StepItem number={4} title="Assinatura do contrato" description="Acompanhamos você até o momento final da assinatura." />
           </div>
           <div className="text-center mt-16">
-            <button 
+            <button
               onClick={scrollToForm}
               className="inline-block bg-white text-amber-600 px-10 py-5 rounded-full font-bold text-xl shadow-2xl transition-transform hover:scale-105"
             >
-              Tenho interesse!
+              Dê o primeiro passo -&gt;
             </button>
           </div>
         </div>
@@ -295,7 +296,7 @@ const App: React.FC = () => {
               </div>
               <h3 className="text-2xl font-bold mb-4">Siga nossa jornada</h3>
               <p className="text-slate-400 mb-8">Veja os bastidores e novas ofertas diariamente em nosso Instagram.</p>
-              <a 
+              <a
                 href={`https://instagram.com/${INSTAGRAM_HANDLE.replace('@', '')}`}
                 className="text-amber-500 font-bold text-xl border-b-2 border-amber-500 pb-1"
               >
@@ -333,11 +334,11 @@ const App: React.FC = () => {
               <p className="text-xl text-amber-50 mb-10">
                 👉 Fale com a gente agora! Estamos prontos para te ouvir.
               </p>
-              <button 
+              <button
                 onClick={scrollToForm}
                 className="inline-flex items-center gap-4 bg-white text-amber-600 px-12 py-6 rounded-2xl font-bold text-2xl shadow-xl transition-transform hover:scale-105"
               >
-                Tenho interesse!
+                Dê o primeiro passo -&gt;
               </button>
             </div>
           </div>
@@ -353,8 +354,8 @@ const App: React.FC = () => {
           </div>
           <p className="text-slate-400 text-sm">© 2024 Deus é Fiel Imobiliária. Osasco & Barueri. Todos os direitos reservados.</p>
           <div className="flex gap-6 text-slate-400">
-             <span className="text-xs">Privacidade</span>
-             <span className="text-xs">Termos</span>
+            <span className="text-xs">Privacidade</span>
+            <span className="text-xs">Termos</span>
           </div>
         </div>
       </footer>
@@ -389,7 +390,7 @@ const AccordionItem: React.FC<{ question: string; answer: string }> = ({ questio
   const [isOpen, setIsOpen] = useState(false);
   return (
     <div className="bg-white rounded-2xl border border-slate-200 overflow-hidden transition-all">
-      <button 
+      <button
         onClick={() => setIsOpen(!isOpen)}
         className="w-full p-6 text-left flex justify-between items-center hover:bg-slate-50"
       >
