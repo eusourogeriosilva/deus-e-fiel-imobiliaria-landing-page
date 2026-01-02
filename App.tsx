@@ -270,7 +270,7 @@ const App: React.FC = () => {
                   “Me senti muito respeitada, eles realmente ouviram o que eu precisava! Encontrei o apartamento perfeito em Barueri.”
                 </p>
                 <div className="flex items-center gap-4">
-                  <img src="https://i.pravatar.cc/100?u=ana" alt="Cliente" className="w-12 h-12 rounded-full" />
+                  <img src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?q=80&w=200&auto=format&fit=crop" alt="Cliente" className="w-12 h-12 rounded-full object-cover" />
                   <div>
                     <p className="font-bold">Ana Maria Silva</p>
                     <p className="text-sm text-slate-500">Cliente Satisfeita</p>
