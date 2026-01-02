@@ -26,11 +26,50 @@ const App: React.FC = () => {
     setFormData(prev => ({ ...prev, [name]: value }));
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    console.log('Lead Capturado:', formData);
-    alert('Obrigado pelo contato! Nossa equipe retornará em breve.');
-    setFormData({ name: '', email: '', whatsapp: '', region: '' });
+
+    const GITHUB_TOKEN = import.meta.env.VITE_GITHUB_TOKEN;
+    const REPO_OWNER = 'eusourogeriosilva';
+    const REPO_NAME = 'deus-e-fiel-imobiliaria-landing-page';
+
+    if (!GITHUB_TOKEN) {
+      alert('Erro de configuração: Token do GitHub não encontrado.');
+      return;
+    }
+
+    try {
+      const response = await fetch(`https://api.github.com/repos/${REPO_OWNER}/${REPO_NAME}/dispatches`, {
+        method: 'POST',
+        headers: {
+          'Authorization': `Bearer ${GITHUB_TOKEN}`,
+          'Accept': 'application/vnd.github.v3+json',
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          event_type: 'new-lead',
+          client_payload: {
+            date: new Date().toLocaleDateString('pt-BR') + ' ' + new Date().toLocaleTimeString('pt-BR'),
+            name: formData.name,
+            email: formData.email,
+            whatsapp: formData.whatsapp,
+            region: formData.region
+          }
+        })
+      });
+
+      if (response.ok) {
+        alert('Obrigado pelo contato! Seus dados foram enviados com sucesso.');
+        setFormData({ name: '', email: '', whatsapp: '', region: '' });
+      } else {
+        const errorData = await response.json();
+        console.error('GitHub Error:', errorData);
+        alert('Houve um erro ao enviar seus dados. Por favor, tente novamente.');
+      }
+    } catch (error) {
+      console.error('Network Error:', error);
+      alert('Erro de conexão. Verifique sua intenet.');
+    }
   };
 
   return (
@@ -40,11 +79,11 @@ const App: React.FC = () => {
         <div className="container mx-auto px-6 h-16 flex items-center justify-between">
           <div className="flex items-center gap-2">
             <div className="w-10 h-10 bg-amber-500 rounded-lg flex items-center justify-center text-white font-bold text-xl">DF</div>
-            <span className="font-bold text-lg tracking-tight uppercase">Deus é Fiel <span className="text-amber-500">Imobiliária</span></span>
+            <span className="font-bold text-sm md:text-lg tracking-tight uppercase">Deus é Fiel <span className="text-amber-500">Imob</span></span>
           </div>
           <button
             onClick={scrollToForm}
-            className="hidden md:flex items-center gap-2 bg-amber-500 hover:bg-amber-600 transition-colors text-white px-5 py-2 rounded-full font-semibold text-sm shadow-sm"
+            className="flex items-center gap-2 bg-amber-500 hover:bg-amber-600 transition-colors text-white px-4 py-2 md:px-5 md:py-2 rounded-full font-semibold text-xs md:text-sm shadow-sm"
           >
             Dê o primeiro passo -&gt;
           </button>

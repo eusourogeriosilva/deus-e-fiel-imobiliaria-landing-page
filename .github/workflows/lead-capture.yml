@@ -1,0 +1,64 @@
+name: Lead Capture
+
+on:
+  repository_dispatch:
+    types: [new-lead]
+
+permissions:
+  contents: write
+
+jobs:
+  process-lead:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v3
+
+      - name: Setup Node
+        uses: actions/setup-node@v3
+        with:
+          node-version: '18'
+
+      - name: Update Leads CSV
+        run: |
+          # Create headers if file doesn't exist
+          if [ ! -f leads.csv ]; then
+            echo "Date,Name,Email,WhatsApp,Region" > leads.csv
+          fi
+          
+          # Append new data from the client payload
+          # We use environment variables to handle potential special chars safely
+          echo "${{ github.event.client_payload.date }},${{ github.event.client_payload.name }},${{ github.event.client_payload.email }},${{ github.event.client_payload.whatsapp }},${{ github.event.client_payload.region }}" >> leads.csv
+        shell: bash
+
+      - name: Commit and Push CSV
+        run: |
+          git config --global user.name "Lead Bot"
+          git config --global user.email "bot@noreply.github.com"
+          git add leads.csv
+          git commit -m "New lead: ${{ github.event.client_payload.name }}"
+          git push
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Send Email Notification
+        uses: dawidd6/action-send-mail@v3
+        with:
+          server_address: smtp.gmail.com
+          server_port: 465
+          username: ${{ secrets.MAIL_USERNAME }}
+          password: ${{ secrets.MAIL_PASSWORD }}
+          # Sending to both recipients
+          to: rogeriomilla17@gmail.com,tatiane.seraphim@gmail.com
+          from: Deus é Fiel Imobiliária <${{ secrets.MAIL_USERNAME }}>
+          subject: Novo Lead Capturado! - ${{ github.event.client_payload.name }}
+          body: |
+            Um novo cliente demonstrou interesse!
+            
+            Nome: ${{ github.event.client_payload.name }}
+            Email: ${{ github.event.client_payload.email }}
+            WhatsApp: ${{ github.event.client_payload.whatsapp }}
+            Região: ${{ github.event.client_payload.region }}
+            
+            A planilha atualizada está em anexo.
+          attachments: leads.csv
