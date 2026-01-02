@@ -75,15 +75,15 @@ const App: React.FC = () => {
   return (
     <div className="flex flex-col min-h-screen selection:bg-amber-200">
       {/* Header / Nav */}
-      <header className="fixed w-full top-0 z-50 bg-white/80 backdrop-blur-md border-b border-slate-100">
+      <header className="hidden md:block fixed w-full top-0 z-50 bg-white/80 backdrop-blur-md border-b border-slate-100">
         <div className="container mx-auto px-6 h-16 flex items-center justify-between">
           <div className="flex items-center gap-2">
             <div className="w-10 h-10 bg-amber-500 rounded-lg flex items-center justify-center text-white font-bold text-xl">DF</div>
-            <span className="font-bold text-sm md:text-lg tracking-tight uppercase">Deus é Fiel <span className="text-amber-500">Imob</span></span>
+            <span className="font-bold text-lg tracking-tight uppercase">Deus é Fiel <span className="text-amber-500">Imobiliária</span></span>
           </div>
           <button
             onClick={scrollToForm}
-            className="flex items-center gap-2 bg-amber-500 hover:bg-amber-600 transition-colors text-white px-4 py-2 md:px-5 md:py-2 rounded-full font-semibold text-xs md:text-sm shadow-sm"
+            className="flex items-center gap-2 bg-amber-500 hover:bg-amber-600 transition-colors text-white px-5 py-2 rounded-full font-semibold text-sm shadow-sm"
           >
             Dê o primeiro passo -&gt;
           </button>
